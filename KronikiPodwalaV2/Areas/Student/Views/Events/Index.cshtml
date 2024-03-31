@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using KronikiPodwalaV2.Models;
+@model List<EventModel>;
+<div class="index">
+    <div class="flex search-nav">
+        <form asp-action="Filter" asp-controller="Events" method="post">
+            <label>Wyszukaj rok:<input type="number" name="year"/></label>
+            <button type="submit">Wyszukaj po roku</button>
+    
+        </form>
+        <form asp-action="Search" asp-controller="Events" method="post">
+            <label>Wyszukaj wydarzenie:<input type="text" name="search" /></label>
+            <button type="submit">Wyszukaj po nazwie</button>
+
+        </form>
+    </div>
+    @foreach (EventModel e in Model)
+    {
+        <div class="my-2">
+            <p>@e.EventName</p>
+            <a asp-action="ShowEvent" asp-route-id="@e.Id">Rozwiń</a>
+        </div>
+    }
+</div>

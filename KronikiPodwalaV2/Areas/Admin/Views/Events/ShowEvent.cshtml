@@ -1,0 +1,16 @@
+﻿@using KronikiPodwalaV2.Models;
+@model EventModel;
+
+
+<h1>@Model.EventName</h1>
+<p>@Model.EventDescription</p>
+
+
+<form asp-controller="Events" asp-action="DeleteEvent" method="POST">
+    <input hidden asp-for="EventName" />
+    <input hidden asp-for="EventDescription" />
+    <input hidden asp-for="Id" />
+    <button class="btn btn-danger">Usuń</button>
+</form>
+
+<a asp-action="EditEvent" asp-route-id="@Model.Id">Edit</a>

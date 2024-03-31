@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - KronikiPodwalaV2</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/KronikiPodwalaV2.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="container nav-container">
+                <input class="checkbox" type="checkbox" name="" id="" />
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div class="logo">
+                    <h1>World Chronicles</h1>
+                </div>
+                <div class="menu-items">
+                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="nav-link text-dark" asp-controller="Events" asp-action="Index" asp-area="Admin">Events</a></li>
+                    <li><a class="nav-link text-dark" asp-controller="Events" asp-action="Index" asp-area="Student">Admin Panel</a></li>
+                    <li><a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                    <li><a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="main"> 
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Word Chronicles - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿@using KronikiPodwalaV2.Models;
+@model EventModel;
+
+<form asp-action="EditEvent" asp-controller="Events" method="post">
+    <input hidden asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="EventName">
+            
+        </label>
+        <input asp-for="EventName"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EventDescription">
+
+        </label>
+        <input asp-for="EventDescription"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EventYear">
+
+        </label>
+        <input asp-for="EventYear" />
+    </div>
+    <button type="submit" class="btn btn-primary">Edytuj event</button>
+</form>
