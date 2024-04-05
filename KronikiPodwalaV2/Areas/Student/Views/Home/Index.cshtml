@@ -2,23 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class=" landpage  page flex container">
-    <div class="container text-center">
-        <h1 class="display-4">Witaj w <span class="blue header">Kronikach</span></h1>
-        <p>Czym są <span class="blue">Kroniki</span>?</p>
-        <p>Jest to zbiór wszytskich wydarzeń, które wydarzyły się w przeciągu istnienia naszej szkoły.</p
-        <p>Jeśli chcesz poznać historie szkoły, jej powstania, wszystkich świąt to dobrze trafiłeś. Nasza aplikacja zawiera je i pozwala na wyszukiwanie ich przez co nie stracisz czasu na zbędne grzebanie po starych stronach!</p>
+<section class=" landpage">
+    <div class="container-mobile  landpage-text">
+        <h1 class="display-4">Welcome in <span class="blue header">Chronicles</span></h1>
+        <p>What is <span class="blue">Chronicles</span>?</p>
+        <p>It is a collection of all events that have occurred in the history of the <spam class="blue">world</spam></p>
+        <p>If you want to learn the history of the world, its creation and all its events, you've come to the right place. Our application contains them and allows you to search for them, so you won't waste time digging through old websites or Wiki!</p>
         <hr />
-        <p><span class="blue">Zainteresowany</span>? U dołu masz wszystko czego potrzebujesz</p>
+        <p><span class="blue">Interested</span>? Here's everything you needs</p>
         <div class="account-btns">
-            <button class="account-btn"><a id="register" asp-area="Identity" asp-page="/Account/Register">Zarejestruj się</a></button>
-            <button class="account-btn"><a id="login" asp-area="Identity" asp-page="/Account/Login">Zaloguj się</a></button>
+            <button class="account-btn"><a id="register" asp-area="Identity" asp-page="/Account/Register">Register</a></button>
+            <button class="account-btn"><a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a></button>
         </div>
      </div>
      <div class="landpage-img">
-         <div class="svg-bg">
-             <partial name="_splash" />
-         </div>
-         <img src="~/css/imgs/Grabski_Wladyslaw.jpg" alt="Wladyslaw Grabski" class="index"/>
+         <div class="layer"></div>
+         <img src="~/css/imgs/book.jpg" alt="landpage img"/>
      </div>
-</div>
+    
+</section>
+
+
+

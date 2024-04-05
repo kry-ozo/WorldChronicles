@@ -1,17 +1,11 @@
 ﻿
-const navCheckbox = document.querySelector(".checkbox")
-let num = 1
+$(document).ready(function () {
+	$('#nav-icon1').click(function () {
+		$("#nav-list").toggleClass('opened');
+	});
+	$('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function () {
+		$(this).toggleClass('open');
+	});
 
-navCheckbox.addEventListener("click", () => {
-    num++
-    const index = document.querySelector(".index")
-    console.log(index)
-    if (num % 2 == 0) {
-        
-        index.style = "z-index: -1"
-        index.style= "display: none"
-    } else {
-        index.style = "display: block; z-index: 1" 
-        index.style = "display: block"
-    }
-})
+	
+});

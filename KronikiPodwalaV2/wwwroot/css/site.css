@@ -21,276 +21,251 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 12px; /* Szerokoœæ paska przewijania */
+    display: none;
+    /* Szerokoœæ paska przewijania */
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #ffffff; /* Kolor t³a paska przewijania */
+    background-color: #fff; /* Kolor t³a paska przewijania */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #8aecff; /* Kolor paska przewijania */
-    border-radius: 6px; /* Zakr¹glenie rogów */
-}
-/*Layout*/
-
-
-.brand{
-    color: #fff;
-    font-weight: 800;
-    font-size : 1.5em;
-    text-decoration: none;
-    margin-left: 1em;
-    
+    background-color: #4d4d4d;
 }
 
-.container {
-    max-width: 1050px;
-    width: 90%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-}
+main {
+    min-height: 100vh;
+}/* Kolor paska przewijania */
 
-.navbar {
+ 
+
+/*****************************/
+/*Nav Layout*/
+
+
+.nav {
+    height: 50px;
     width: 100%;
-    box-shadow: 0 1px 4px #101728;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 62px;
-}
-
-.navbar .menu-items {
-    display: flex;
-}
-
-.navbar .nav-container li {
-    list-style: none;
-}
-
-.navbar .nav-container a {
-    text-decoration: none;
-    color: #000;
-    font-weight: 500;
-    font-size: 1.2rem;
-    padding: 0.7rem;
-}
-
-    .navbar .nav-container a:hover {
-        font-weight: bolder;
-    }
-
-.nav-container {
-    display: block;
+    background-color: #4d4d4d;
     position: relative;
-    height: 60px;
 }
 
-    .nav-container .checkbox {
-        position: absolute;
-        display: block;
-        height: 32px;
-        width: 32px;
-        top: 20px;
-        left: 20px;
-        z-index: 4;
-        opacity: 0;
-        cursor: pointer;
+    .nav > .nav-header {
+        display: inline;
     }
 
-    .nav-container .hamburger-lines {
-        display: block;
-        height: 26px;
-        width: 32px;
-        position: absolute;
-        top: 17px;
-        left: 20px;
-        z-index: 3;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        .nav > .nav-header > .nav-title {
+            display: inline-block;
+            font-size: 22px;
+            color: #fff;
+            padding: 10px 10px 10px 10px;
+        }
+
+    .nav > .nav-btn {
+        display: none;
     }
 
-        .nav-container .hamburger-lines .line {
+    .nav > .nav-links {
+        display: inline;
+        float: right;
+        font-size: 18px;
+    }
+
+        .nav > .nav-links > .nav-link {
+            display: inline-block;
+            padding: 13px 10px 13px 10px;
+            text-decoration: none;
+            color: #efefef;
+        }
+
+            .nav > .nav-links > .nav-link:hover {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+    .nav > #nav-check {
+        display: none;
+    }
+
+    #logout{
+        background: none;
+        border: none;
+        color: red;
+        font-size: 1em;
+        padding: 0;
+    }
+
+    .footer{
+        background-color: #4d4d4d;
+        margin: 0;
+        height: 16vh
+    }
+
+@media (max-width:600px) {
+    .nav > .nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+
+        .nav > .nav-btn > label {
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            padding: 13px;
+        }
+
+            .nav > .nav-btn > label:hover, .nav #nav-check:checked ~ .nav-btn > label {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            .nav > .nav-btn > label > span {
+                display: block;
+                width: 25px;
+                height: 10px;
+                border-top: 2px solid #eee;
+            }
+
+    .nav > .nav-links {
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: #333;
+        height: 0px;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0px;
+    }
+
+        .nav > .nav-links > a {
             display: block;
-            height: 4px;
             width: 100%;
-            border-radius: 10px;
-            background: #0e2431;
         }
 
-        .nav-container .hamburger-lines .line1 {
-            transform-origin: 0% 0%;
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .nav-container .hamburger-lines .line2 {
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .nav-container .hamburger-lines .line3 {
-            transform-origin: 0% 100%;
-            transition: transform 0.4s ease-in-out;
-        }
-
-.navbar .menu-items {
-    padding-top: 120px;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-    height: 100vh;
-    width: 100%;
-    transform: translate(-150%);
-    display: flex;
-    flex-direction: column;
-    margin-left: -40px;
-    padding-left: 50px;
-    transition: transform 0.5s ease-in-out;
-    text-align: center;
-    z-index: 2;
-    position: absolute;
-}
-
-    .navbar .menu-items li {
-        margin-bottom: 1.2rem;
-        font-size: 1.5rem;
-        font-weight: 500;
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+        height: 0px;
     }
 
-.logo {
-    display: none;
-    position: absolute;
-    top: -12px;
-    right: 15px;
-    font-size: 1.2rem;
-    color: #0e2431;
-}
-
-     .brand {
-        font-size: 1.2rem;
-        color: #0e2431;
+    .nav > #nav-check:checked ~ .nav-links {
+        height: calc(100vh - 50px);
+        overflow-y: auto;
     }
-
-.nav-container input[type="checkbox"]:checked ~ .menu-items {
-    transform: translateX(0);
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
-    transform: rotate(45deg);
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
-    transform: scaleY(0);
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
-    transform: rotate(-45deg);
-}
-
-.nav-container input[type="checkbox"]:checked ~ .logo {
-    display: none;
-}
-
-
-.flex{
-    display: flex;
-}
-
-
-@media(min-width: 425px){
-    .logo{
-        display: block;
-    }
-}
-
-/*Main page*/
-
-
-.landpage{
-    margin-top: 1.2em;
-}
-.blue{
-    color: #8aecff;
-}
-
-.text-center{
-    text-align: center;
-    font-size: 1.2em;
-    flex-direction: column;
-}
-
-hr{
-    background-color: #8aecff;
-    width: 80%;
-}
-.account-btns{
-    margin: .5em 0;
-}
-.account-btn {
-    padding: 1em;
-    border-radius: 5px;
-    background-color: #8aecff;
-    border: 1px solid #8aecff;
-    font-size: .8em;
-    font-weight: 600;
-}
-
-.respons{
-    display: none;
 }
 
 a{
     text-decoration: none;
-    color: #000;
 }
 
-.landpage-img {
+.nav-title a{
+    color: #fff;
+    font-weight: 500;
+}
+
+/*LANDPAGE*/
+.landpage{
+    display: inline-block;
+    height: 100vh;
+}
+
+.landpage-img{
     display: none;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* Ustaw pozycjê na relative, aby elementy potomne mog³y byæ pozycjonowane wzglêdem niego */
-    width: 1000px; /* Ustaw odpowiedni¹ szerokoœæ i wysokoœæ */
-    height: 500px;
 }
-
-.svg-bg {
-    position: absolute; /* Ustaw pozycjê na absolute, aby t³o SVG by³o na drugim planie */
-    top: 0;
-    left: 0;
+.landpage-img img{
     width: 100%;
-    height: 100%;
-    z-index: -1; /* Ustaw ujemny indeks warstwy, aby t³o SVG by³o pod innymi elementami */
 }
 
-.index {
-    height: 250px;
-    border-radius: 40px;
-    position: relative; /* Ustaw pozycjê na relative, aby obrazek by³ widoczny na pierwszym planie */
-    z-index: 0; /* Ustaw indeks warstwy na 1, aby obrazek by³ nad t³em SVG */
+.container-mobile{
+    width: 90%;
+    margin: 0 auto;
 }
 
-@media(min-width: 1023px){
-    .landpage-img {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative; /* Ustaw pozycjê na relative, aby elementy potomne mog³y byæ pozycjonowane wzglêdem niego */
-        width: 1000px; /* Ustaw odpowiedni¹ szerokoœæ i wysokoœæ */
-        height: 500px;
+.landpage-text{
+    text-align: center;
+    font-size: 1.2em
+}
+
+.account-btn{
+    padding: 1em 2em;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    
+}
+
+.account-btn a {
+   text-decoration: none;
+   font-size: 1.2em;
+   color: #000;
+   
+}
+
+@media(min-width: 1024px){
+    .landpage-img{
+        display: block;
+        width: 44%;
+        float: left;
+        height: 100vh;
+    }
+
+    .landpage img{
+        height: 100.5vh;
+        z-index: 0;
+    }
+    .container-mobile {
+        width: 50%;
+        margin: 0;
+    }
+    .landpage-text{
+        padding-top: 8%;
+        width: 50%;
+        float: left;
+        margin: 0 3%;
+        height: 100vh;
+
+    }
+
+    .landpage{
+        height: 100vh;
+    }
+    .layer {
+        position: absolute;
+        height: 100.5vh;
+        width: 100%;
+        background: linear-gradient(to right, rgba(255, 255, 255, 1 ), transparent);
+        z-index: 1;
+        width: 44%;
     }
 }
 
-/*search navigation*/
-.search-nav{
-    justify-content: space-around;
-    margin: 1em 0;
-}
+/*USER AUTH SECTION*/
 
-.search-nav input{
-    padding: .5em;
+.login{
 
 }
 
+.login h1{
+    text-align: center;
+    font-size:2.2em;
+}
+
+.input-group{
+    margin-bottom: 1em;
+    display: flex;
+}
+
+.input-group input{
+    padding:.5em;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #4d4d4d;
+}
+
+    .input-group label {
+        background-color: #4d4d4d;
+        padding: .33em .7em;
+        min-width: 5em;
+        margin-left: 0;
+        border-radius: 0 5px 5px 0;
+        color: #fff;
+        text-align: center;
+        border: 1px solid #4d4d4d;
+    }
