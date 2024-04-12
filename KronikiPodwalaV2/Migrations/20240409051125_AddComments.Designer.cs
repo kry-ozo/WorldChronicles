@@ -3,6 +3,7 @@ using System;
 using KronikiPodwalaV2.DataObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KronikiPodwalaV2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240409051125_AddComments")]
+    partial class AddComments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,9 +95,6 @@ namespace KronikiPodwalaV2.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("CommentedEvent")
-                        .HasColumnType("int");
-
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -107,8 +106,6 @@ namespace KronikiPodwalaV2.Migrations
 
                     b.HasIndex("CommentOwner");
 
-                    b.HasIndex("CommentedEvent");
-
                     b.ToTable("comment");
 
                     b.HasData(
@@ -116,7 +113,6 @@ namespace KronikiPodwalaV2.Migrations
                         {
                             Id = 1,
                             CommentOwner = "7dd706b0-b7e3-4020-ad17-d822cd5beee2",
-                            CommentedEvent = 10,
                             Text = "Interesting",
                             isReported = false
                         },
@@ -124,7 +120,6 @@ namespace KronikiPodwalaV2.Migrations
                         {
                             Id = 2,
                             CommentOwner = "7dd706b0-b7e3-4020-ad17-d822cd5beee2",
-                            CommentedEvent = 10,
                             Text = "Interesting",
                             isReported = false
                         },
@@ -132,7 +127,6 @@ namespace KronikiPodwalaV2.Migrations
                         {
                             Id = 3,
                             CommentOwner = "7dd706b0-b7e3-4020-ad17-d822cd5beee2",
-                            CommentedEvent = 10,
                             Text = "Interesting",
                             isReported = false
                         });
@@ -323,14 +317,6 @@ namespace KronikiPodwalaV2.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("KronikiPodwalaV2.Models.EventModel", "Event")
-                        .WithMany("Comments")
-                        .HasForeignKey("CommentedEvent")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-
                     b.Navigation("Owner");
                 });
 
@@ -386,11 +372,6 @@ namespace KronikiPodwalaV2.Migrations
                 });
 
             modelBuilder.Entity("KronikiPodwalaV2.Models.AppUser", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("KronikiPodwalaV2.Models.EventModel", b =>
                 {
                     b.Navigation("Comments");
                 });

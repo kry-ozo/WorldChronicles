@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model EventModel;
+@inject UserManager<AppUser> UserManager;
+@{
+    string userId = UserManager.GetUserId(User);
+    AppUser Loggeduser = await UserManager.FindByIdAsync(userId);
+}
+
+
+
+<section class="show-event"> 
+    <p class="year">@Model.EventYear</p>
+    <hr />
+    <p>@Model.EventDescription</p>
+    <hr />
+    <form asp-action="AddComment" asp-controller="Events" method="post">
+        <input value="@Model.Id" hidden name="EventModel"/>
+        <div>
+            <label for="text">
+                Add Your Comment
+            </label>
+            <br />
+            <textarea id="comment-text-form" name="text">
+
+            </textarea>
+        </div>
+        <button type="submit">Add Comment</button>
+    </form>
+    <hr/>
+    <h3>Comment Section</h3>
+    <div class="comments">
+        @if (Model.Comments!=null)
+        {
+            @foreach (Comment comment in Model.Comments)
+            {
+                AppUser user = await UserManager.FindByIdAsync(comment.CommentOwner);
+                <div class="comment">
+                    <p class="comment-username">@user.UserName</p>
+                    <p class="comment-text">@comment.Text</p>
+                    @if (userId == comment.CommentOwner ||  await UserManager.IsInRoleAsync(Loggeduser, "Admin"))
+                    {
+                        <form asp-action="DeleteComment" asp-controller="Events" method="POST">
+                            <input hidden value="@comment.Id" name="commentId">
+                            <button class="delete-btn">Delete</button>
+                        </form>
+                    }
+                    
+                </div>
+            }
+        }
+        else
+            {
+                <p>There Is No Comments Yet</p>
+            }
+
+    </div>
+</section>

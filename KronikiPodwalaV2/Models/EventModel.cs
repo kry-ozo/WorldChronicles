@@ -12,6 +12,7 @@ namespace KronikiPodwalaV2.Models
         public string EventDescription { get; set; }
         [Required]
         public int EventYear { get; set; }
+        public List<Comment> Comments { get; set; }
 
     }
 }
