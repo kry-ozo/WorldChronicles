@@ -12,20 +12,21 @@ namespace KronikiPodwalaV2.Areas.Admin.Controllers
     public class EventsController : Controller
     {
         private readonly IUnitOfWork _db;
+        
 
         public EventsController(IUnitOfWork db)
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult ManageEvents()
         {
-            List<EventModel> eventModels = (List<EventModel>)_db.Event.GetAll();
-            return View(eventModels);
+           
+            return View();
         }
-        public IActionResult ShowEvent(int id)
+        public IActionResult ManageComments(int id)
         {
-            EventModel m = _db.Event.Get(id);
-            return View(m);
+           List<Comment> comments = (List<Comment>)_db.Comment.GetAll();
+            return View(comments);
         }
         public IActionResult AddEvent()
         {

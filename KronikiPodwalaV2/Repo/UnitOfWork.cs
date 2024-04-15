@@ -8,10 +8,13 @@ namespace KronikiPodwalaV2.Repo
         private AppDbContext _db;
         public IEventRepo Event { get; private set; }
 
+        public ICommentRepo Comment  { get; private set; }
+
         public UnitOfWork(AppDbContext db)
         {
             _db = db;
             Event = new EventRepo(_db);
+            Comment = new CommentRepo(_db);
         }
 
         public void Save()

@@ -452,3 +452,152 @@ a{
     border-radius: 8px;
     border: 1px solid #4d4d4d;
 }
+
+/*ADMIN PANEL*/
+.mobile-options{
+    text-align:center;
+    background-color:#4d4d4d;
+    color: white;
+}
+.admin-panel{
+    display: flex;
+    flex-direction: column;
+}
+.manage-events{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#admin-options{
+    cursor: pointer;
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-in-out;
+    background-color: #4d4d4d;
+    color: white;
+}
+.admin-nav a{
+    color: white;
+}
+    .admin-nav.active {
+        max-height: 200px;
+    }
+
+.manage-events {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.manage-events h1 {
+    text-align: center;
+}
+
+    .manage-events h2 {
+        text-align: center;
+    }
+
+.textarea-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.area-label{
+    font-size: 18px;
+}
+.resize {
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    overflow-y: hidden;
+    resize: none;
+}
+
+.desktop-title{
+    display:none;
+}
+
+hr{
+    width: 100%;
+}
+
+.events-actions {
+    background-color: #4d4d4d;
+    color: white;
+}
+
+@media(min-width: 900px){
+    .admin-panel {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .mobile-options{
+        display: none;
+    }
+
+    .admin-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        width: 20vw;
+        background-color: #4d4d4d;
+        color: white;
+        max-height: 100%;
+    }
+
+    .admin-nav a{
+        margin: 2em 1em;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+        .admin-nav a:nth-child(1) {
+            margin-top: 3em;
+        }
+
+    .manage-events {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .manage-events h1{
+       margin-top: 5em;
+    }
+    .desktop-title{
+        display: block;
+        font-size: 24px;
+        font-weight: bold;
+        border-bottom: 1px solid white;
+        padding-bottom: .7em;
+    }
+}
+
+/*MANAGE COMMENTS*/
+
+.reported-comments{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.reported-comment{
+    border: 1px solid #4d4d4d;
+    padding: .5em;
+    border-radius: 12px
+}

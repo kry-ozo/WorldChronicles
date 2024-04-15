@@ -15,13 +15,13 @@ namespace KronikiPodwalaV2.Areas.Student.Controllers
     {
         private readonly IUnitOfWork _db;
         private readonly UserManager<AppUser> _userManager;
-       private readonly AppDbContext _appDbContext;
+    
 
-        public EventsController(IUnitOfWork db, UserManager<AppUser> userManager, AppDbContext appDbContext)
+        public EventsController(IUnitOfWork db, UserManager<AppUser> userManager)
         {
             _db = db;
             _userManager = userManager;
-            _appDbContext = appDbContext;
+            
         }
         public IActionResult Index()
         {
@@ -31,7 +31,7 @@ namespace KronikiPodwalaV2.Areas.Student.Controllers
         public IActionResult ShowEvent(int id)
         {
             EventModel m = _db.Event.Get(id);
-            List<Comment> comms = _appDbContext.comment.ToList();
+            List<Comment> comms = (List<Comment>)_db.Comment.GetAll();
             List<Comment> foundComments = new List<Comment>();
             foreach(Comment comm in comms)
             {
@@ -120,21 +120,33 @@ namespace KronikiPodwalaV2.Areas.Student.Controllers
             };
             
 
-            _appDbContext.comment.Add(newComment);
-            _appDbContext.SaveChanges();
-
+            _db.Comment.Add(newComment);
+            _db.Save();
+    
             return RedirectToAction("ShowEvent", e);
         }
 
         [HttpPost]
         public IActionResult DeleteComment(int commentId)
         {
-            Comment commentToDelete = _appDbContext.comment.Find(commentId);
+            Comment commentToDelete = _db.Comment.Get(commentId);
             EventModel e = _db.Event.Get(commentToDelete.CommentedEvent);
 
-            _appDbContext.comment.Remove(commentToDelete);
-            _appDbContext.SaveChanges();
+            _db.Comment.Delete(commentToDelete);
+            _db.Save();
             return RedirectToAction("ShowEvent", e);
+        }
+
+        [HttpPost]
+        public IActionResult ReportComment(int commentId)
+        {
+            Comment comment = _db.Comment.Get(commentId);
+            comment.isReported = true;
+            _db.Comment.Update(comment);
+            _db.Save();
+            EventModel e = _db.Event.Get(comment.CommentedEvent);
+            return RedirectToAction("ShowEvent", e);
+            
         }
         
     }

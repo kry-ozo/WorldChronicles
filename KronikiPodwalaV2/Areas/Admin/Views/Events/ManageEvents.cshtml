@@ -1,0 +1,61 @@
+﻿@using KronikiPodwalaV2.Models;
+@model EventModel;
+
+<section class="admin-panel">
+    <div class="mobile-options">
+        <p id="admin-options">Options</p>
+    </div>   
+    <aside class="admin-nav">
+        <p class="desktop-title">Other Options</p>
+        <a asp-action="ManageEvents" asp-controller="Events">Manage Events</a>
+        <a asp-action="ManageComments" asp-controller="Events">Manage Comments</a>
+        <a>Manage Users</a>
+        <br>
+    </aside>
+    <div class="manage-events">
+        <h1>Manage Events</h1>
+        <hr />
+        <h2>Add Event</h2>
+        <form asp-action="AddEvent" asp-controller="Events" method="post">
+            <div class="option add-event-opt">
+                <div class="input-group">
+                    <input asp-for="EventName" />
+                    <label asp-for="EventName">
+                        Name
+                    </label>
+                </div>
+            </div>
+            <div class="option add-event-opt">
+                <div class="textarea-group">
+                    <label asp-for="EventDescription" class="area-label">
+                        Description
+                    </label>
+                    <br />
+                    <textarea asp-for="EventDescription" class="resize" id="textArea"> 
+
+                    </textarea>
+                    
+                </div>
+            </div>
+            <div class="option add-event-opt">
+                    <div class="input-group">
+                        <input asp-for="EventYear" />
+                        <label asp-for="EventYear">
+                            Year
+                        </label>
+                    </div>
+                </div>
+            
+            
+            <div class="option">
+                <div class="input-group">
+                    <button type="submit" class="account-btn">Add Event</button>
+                </div>
+            </div>
+           
+        </form>
+        <hr />
+        <h3>Other Actions:</h3>
+        <a class="account-btn events-actions">Edit Or Delete Some Events</a>
+    </div>
+</section>

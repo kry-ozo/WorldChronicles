@@ -43,6 +43,10 @@
                             <input hidden value="@comment.Id" name="commentId">
                             <button class="delete-btn">Delete</button>
                         </form>
+                        <form asp-action="ReportComment" asp-controller="Events" method="POST">
+                            <input hidden value="@comment.Id" name="commentId">
+                            <button class="delete-btn">Report</button>
+                        </form>
                     }
                     
                 </div>
