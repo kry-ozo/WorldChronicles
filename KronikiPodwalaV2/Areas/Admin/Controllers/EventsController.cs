@@ -28,9 +28,10 @@ namespace KronikiPodwalaV2.Areas.Admin.Controllers
            List<Comment> comments = (List<Comment>)_db.Comment.GetAll();
             return View(comments);
         }
-        public IActionResult AddEvent()
+        public IActionResult ManageReportedComments()
         {
-            return View();
+            List<Comment> comments = (List<Comment>)_db.Comment.GetAll();
+            return View(comments); 
         }
 
         [HttpPost]

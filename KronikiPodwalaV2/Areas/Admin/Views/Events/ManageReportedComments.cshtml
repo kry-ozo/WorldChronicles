@@ -15,25 +15,28 @@
         <br>
     </aside>
     <div class="manage-events">
-        <h2>All Comments</h2>
+        <h2>Reported Comments</h2>
         <div class="reported-comments">
             @foreach (Comment comment in Model)
             {
-               
+                if (comment.isReported)
+                {
                     AppUser user = await UserManager.FindByIdAsync(comment.CommentOwner);
                     <div class="reported-comment">
-                        
+
                         <p>Username: @user.UserName</p>
                         <p>UserId: @user.Id</p>
                         <p>Text: @comment.Text</p>
                     </div>
+                }
+               
                 
             }
         </div>
        
 
         <h3>Actions:</h3>
-        <a class="account-btn events-actions" asp-action="ManageReportedComments">Manage Reported Comments</a>
+        <a class="account-btn events-actions" asp-action="ManageComments">Go back to comments</a>
         
     </div>
 </section>
