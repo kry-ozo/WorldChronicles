@@ -1,0 +1,37 @@
+﻿@model List<EventModel>;
+@using KronikiPodwalaV2.Models;
+
+
+<section class="admin-panel">
+    <div class="mobile-options">
+        <p id="admin-options">Options</p>
+    </div>   
+    <aside class="admin-nav">
+        <p class="desktop-title">Other Options</p>
+        <a asp-action="ManageEvents" asp-controller="AdminPanel">Manage Events</a>
+        <a asp-action="ManageComments" asp-controller="AdminPanel">Manage Comments</a>
+        <a asp-action="ManageUsers" asp-controller="AdminPanel">Manage Users</a>
+        <br>
+    </aside>
+    <div class="manage-events">
+        @foreach(EventModel e in Model)
+        {
+            <div class="event">
+                <p>Name: @e.EventName</p>
+                <p>Id: @e.Id</p>
+               
+
+                    <form asp-action="DeleteEvent" method="POST" class="event-panel">
+                        <input asp-for="@e.Id" hidden>
+                        <button>Delete</button>
+                        <a asp-action="EditEvent" asp-route-id="@e.Id">Edit Event</a>
+                    </form>
+                
+            </div>
+                
+        }
+        <hr />
+        <h3>Other Actions:</h3>
+        <a class="account-btn events-actions" asp-action="ManageEvents">Go back</a>
+    </div>
+</section>

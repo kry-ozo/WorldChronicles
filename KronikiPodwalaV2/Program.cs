@@ -1,3 +1,4 @@
+using KronikiPodwalaV2;
 using KronikiPodwalaV2.DataObjects;
 using KronikiPodwalaV2.Models;
 using KronikiPodwalaV2.Repo;
@@ -23,6 +24,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<SeedAdmin>();
+
 var app = builder.Build();
 
 
@@ -44,36 +47,13 @@ app.MapControllerRoute(
 app.UseAuthentication();;
 app.UseAuthorization();
 
-
 using(var scope = app.Services.CreateScope())
 {
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    var roles = new[] { "Admin", "Student"};
-
-    foreach (var role in roles)
-    {
-        if(!await roleManager.RoleExistsAsync(role)){ await roleManager.CreateAsync(new IdentityRole(role)); }
-
-
-    }
-}
-
-using (var scope = app.Services.CreateScope())
-{
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-    var roles = new[] { "Admin", "Student" };
-
-    string adminEmail = "Admin@admin.pl";
-    string password = "P@ssw0rd";
-
-    if(await userManager.FindByEmailAsync(adminEmail) == null)
-    {
-        var user = new AppUser();
-        user.Email = adminEmail;
-        user.UserName = adminEmail;
-
-        await userManager.CreateAsync(user, password);
-        await userManager.AddToRoleAsync(user, "Admin");
-    }
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await SeedAdmin.Seed(userManager, roleManager);
+   
 }
+
+
 app.Run();

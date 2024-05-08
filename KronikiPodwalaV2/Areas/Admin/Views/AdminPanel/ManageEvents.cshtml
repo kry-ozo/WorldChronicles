@@ -7,16 +7,22 @@
     </div>   
     <aside class="admin-nav">
         <p class="desktop-title">Other Options</p>
-        <a asp-action="ManageEvents" asp-controller="Events">Manage Events</a>
-        <a asp-action="ManageComments" asp-controller="Events">Manage Comments</a>
-        <a>Manage Users</a>
+        <a asp-action="ManageEvents" asp-controller="AdminPanel">Manage Events</a>
+        <a asp-action="ManageComments" asp-controller="AdminPanel">Manage Comments</a>
+        <a asp-action="ManageUsers" asp-controller="AdminPanel">Manage Users</a>
         <br>
     </aside>
     <div class="manage-events">
+        @if (ViewData["AdminMessage"]!="")
+        {
+            
+                <p class="admin-message">@ViewData["AdminMessage"]</p>
+            
+        }
         <h1>Manage Events</h1>
         <hr />
         <h2>Add Event</h2>
-        <form asp-action="AddEvent" asp-controller="Events" method="post">
+        <form asp-action="AddEvent" asp-controller="AdminPanel" method="post">
             <div class="option add-event-opt">
                 <div class="input-group">
                     <input asp-for="EventName" />
@@ -56,6 +62,6 @@
         </form>
         <hr />
         <h3>Other Actions:</h3>
-        <a class="account-btn events-actions">Edit Or Delete Some Events</a>
+        <a class="account-btn events-actions" asp-action="DeleteOrEditEvents" asp-controller="AdminPanel">Edit Or Delete Some Events</a>
     </div>
 </section>

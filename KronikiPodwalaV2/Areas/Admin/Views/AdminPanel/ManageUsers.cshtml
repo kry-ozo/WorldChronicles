@@ -1,0 +1,28 @@
+﻿@using KronikiPodwalaV2.Models;
+@model List<AppUser>;
+
+
+<section class="admin-panel">
+    <div class="mobile-options">
+        <p id="admin-options">Options</p>
+    </div>
+    <aside class="admin-nav">
+        <p class="desktop-title">Other Options</p>
+        <a asp-action="ManageEvents" asp-controller="AdminPanel">Manage Events</a>
+        <a asp-action="ManageComments" asp-controller="AdminPanel">Manage Comments</a>
+        <a asp-action="ManageUsers" asp-controller="AdminPanel">Manage Users</a>
+        <br>
+    </aside>
+    <div class="manage-events">
+       <h2>ManageUsers</h2>
+        @foreach(AppUser user in Model)
+        {
+            <div class="user">
+                <p>@user.Id</p>
+                <p>@user.UserName</p>
+                
+            </div>
+        }
+        
+    </div>
+</section>

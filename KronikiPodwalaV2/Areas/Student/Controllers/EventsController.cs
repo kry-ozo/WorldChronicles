@@ -104,29 +104,44 @@ namespace KronikiPodwalaV2.Areas.Student.Controllers
              
         }
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult AddComment(int EventModel, string text)
         {
-            var userName = User.Identity.Name;
-            var user = _userManager.FindByNameAsync(userName).Result;
             EventModel e = _db.Event.Get(EventModel);
-            Comment newComment = new Comment
+            if (text != null)
             {
-                Text = text,
-                CommentedEvent = EventModel,
-                Event = e,
-                isReported = false,
-                CommentOwner = user.Id,
-                Owner=user
-            };
+                var userName = User.Identity.Name;
+                var user = _userManager.FindByNameAsync(userName).Result;
+                
+                Comment newComment = new Comment
+                {
+                    Text = text,
+                    CommentedEvent = EventModel,
+                    Event = e,
+                    isReported = false,
+                    CommentOwner = user.Id,
+                    Owner = user
+                };
+                _db.Comment.Add(newComment);
+                _db.Save();
+                return RedirectToAction("ShowEvent", e);
+            }
+            else
+            {
+                return RedirectToAction("ShowEvent",e);
+            }
+            
             
 
-            _db.Comment.Add(newComment);
-            _db.Save();
+           
     
-            return RedirectToAction("ShowEvent", e);
+            
         }
 
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteComment(int commentId)
         {
             Comment commentToDelete = _db.Comment.Get(commentId);
@@ -138,6 +153,8 @@ namespace KronikiPodwalaV2.Areas.Student.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult ReportComment(int commentId)
         {
             Comment comment = _db.Comment.Get(commentId);

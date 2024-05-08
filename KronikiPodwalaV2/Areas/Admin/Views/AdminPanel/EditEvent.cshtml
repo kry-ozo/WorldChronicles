@@ -1,0 +1,60 @@
+﻿@using KronikiPodwalaV2.Models;
+@model EventModel;
+
+<section class="admin-panel">
+    <div class="mobile-options">
+        <p id="admin-options">Options</p>
+    </div>
+    <aside class="admin-nav">
+        <p class="desktop-title">Other Options</p>
+        <a asp-action="ManageEvents" asp-controller="AdminPanel">Manage Events</a>
+        <a asp-action="ManageComments" asp-controller="AdminPanel">Manage Comments</a>
+        <a asp-action="ManageUsers" asp-controller="AdminPanel">Manage Users</a>
+        <br>
+    </aside>
+    <div class="manage-events">
+        <h1>Manage Events</h1>
+        <hr />
+        <h2>Edit</h2>
+        <form asp-action="EditEvent" asp-controller="AdminPanel" method="post">
+            <div class="option add-event-opt">
+                <div class="input-group">
+                    <input asp-for="EventName" value="@Model.EventName" />
+                    <label asp-for="EventName">
+                        Name
+                    </label>
+                </div>
+            </div>
+            <div class="option add-event-opt">
+                <div class="textarea-group">
+                    <label asp-for="EventDescription" class="area-label">
+                        Description
+                    </label>
+                    <br />
+                    <textarea asp-for="EventDescription" class="resize" id="textArea"> 
+                        @Model.EventDescription
+                    </textarea>
+
+                </div>
+            </div>
+            <div class="option add-event-opt">
+                <div class="input-group">
+                    <input asp-for="EventYear" value="@Model.EventYear" />
+                    <label asp-for="EventYear">
+                        Year
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="option">
+                <div class="input-group">
+                    <button type="submit" class="account-btn">Edit</button>
+                </div>
+            </div>
+
+        </form>
+       
+    </div>
+</section>
+
